@@ -1,0 +1,33 @@
+plugins {
+    id 'application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Official MySQL JDBC driver. Only needed when the program runs, not to compile it.
+    runtimeOnly 'com.mysql:mysql-connector-j:8.4.0'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 17
+}
+
+application {
+    mainClass = 'library.App'
+    applicationDefaultJvmArgs = ['-Dfile.encoding=UTF-8']
+}
+
+// Automated checks (see src/test/java/library/SelfTest.java).
+// Needs a running MySQL server. Uses a throw-away database called "library_selftest".
+tasks.register('selfTest', JavaExec) {
+    group = 'verification'
+    description = 'Runs the automated checks against a temporary MySQL database'
+    dependsOn 'testClasses'
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'library.SelfTest'
+    jvmArgs '-Dfile.encoding=UTF-8'
+}

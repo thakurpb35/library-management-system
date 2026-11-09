@@ -1,0 +1,17 @@
+# Optional settings file.
+# Copy this file to "library.properties" and edit it.
+# You normally don't need to: if the app cannot connect to MySQL it shows a
+# window where you can type these details, and saves them for you.
+
+# --- MySQL connection ---
+db.host=localhost
+db.port=3306
+db.name=library_db
+db.user=root
+db.password=
+
+# --- Library rules ---
+loan.days=14
+fine.per.day=2
+max.books.per.member=3
+currency=₹

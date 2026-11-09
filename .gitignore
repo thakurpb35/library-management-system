@@ -1,0 +1,16 @@
+# Build output
+build/
+.gradle/
+out/
+bin/
+*.class
+
+# Your own database settings (may contain your MySQL password)
+library.properties
+
+# Editors / OS
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
